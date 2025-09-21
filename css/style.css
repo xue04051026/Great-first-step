@@ -1,0 +1,30 @@
+/* 全局样式 */
+body {
+    background-color: #f4f4f4;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+/* 标题和链接样式 */
+#main-title {
+    color: #007bff;
+    font-size: 36px;
+}
+
+.section-title {
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+}
+
+a:hover {
+    color: red;
+}
+/* 布局容器 */
+#wrapper {
+    width: 960px;
+    margin: 30px auto; /* 上下30px外边距，左右自动实现水平居中 */
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+/* --- Float 布局 --- */
