@@ -9,29 +9,45 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">我的主页</a>
-    </div>
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">我的主页</a>
+            <button id="toggle-dark-mode" class="btn btn-outline-light">夜间模式</button>
+        </div>
     </nav>
     <div class="container mt-4">
         <div class="row">
          <div class="col-md-8">
              <h1 id="main-title">薛亿鹏</h1>
              <h2>信息管理与信息系统专业</h2>
-             <h2 class="section-title">项目经历</h2>
-             <ul>
-               <li>在线商城系统开发</li>
-               <li>校园论坛设计</li>
-               <li>机器学习课程项目</li>
-             </ul>
+             <h2 class="section-title">个人简介</h2>
+             <div id="bio-content">
+               
+                 <ul>
+                    <li>在线商城系统开发</li>
+                     <li>校园论坛设计</li>
+                    <li>机器学习课程项目</li>
+                 </ul>
+             </div>
+                 
+              
+
            </div>
          <div class="col-md-4">
             <h2 class="section-title">技能清单</h2>
-            <ul class="list-group">
+            <ul class="list-group" id="skills-list">
                 <li class="list-group-item">HTML/CSS</li>
                 <li class="list-group-item">JavaScript</li>
                 <li class="list-group-item">Python</li>
             </ul>
+            <div class="mt-3"	>
+                <input type="text" id="new-project-input" class="form-control" placeholder="输入新的项目名称">
+                <button id="add-project-btn" class="btn btn-success mt-2">添加项目</button>
+            </div>
+
+
+
+
+
             <h2 class="section-title">联系方式13705903808</h2>
             <p><a href="mailto:2647725510@qq.com" class="btn btn-primary">邮件联系我</a></p>
     
@@ -41,6 +57,11 @@
      <div style="clear:both;"></div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+ <script src="js/main.js"></script>
 </body>
 </html>
