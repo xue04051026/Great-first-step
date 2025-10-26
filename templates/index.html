@@ -1,0 +1,41 @@
+{%extends 'bootstrap/base.html' %}
+{%import "bootstrap/wtf.html" as wtf%}
+{%block title%}
+    学生信息管理系统
+{%endblock%}
+{%block content%}
+<div class="container">
+
+</div>
+<div class="page-header">
+    <h1>学生信息列表</h1>
+</div>
+<h4>当前共有 {{studs|length}} 名学生</h4>
+<a class="btn btn-primary" href="{{url_for('new_stud')}}">新建学生</a>
+<div>
+    {%for stud in studs%} 
+<div>
+    <p>
+        {{stud.studentName}} 
+        {% if stud.major %}
+            <span class="label label-info">{{ stud.major.major_name }}</span>
+        {% else %}
+            <span class="label label-default">未分配专业</span>
+        {% endif %}
+  
+    <a class="btn" href="{{url_for('edit_stud',stud_id=stud.id)}}">Edit</a> 
+    <a class="btn" href="{{url_for('del_stud',stud_id=stud.id)}}">Delete</a> 
+    </p>
+</div>
+{%endfor%}
+<div class="page-header">
+    <h1>Student Records</h1> 
+    <div>
+        <a href="{{ url_for('index') }}" class="btn btn-primary btn-xs">所有学生</a>
+        {% for m in majors %}
+            <a href="{{ url_for('filter_by_major', major_id=m.id) }}" class="btn btn-default btn-xs">{{ m.major_name }}</a>
+        {% endfor %}
+    </div>
+</div>
+
+{%endblock%}
