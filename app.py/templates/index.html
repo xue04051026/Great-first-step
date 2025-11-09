@@ -1,0 +1,78 @@
+{%extends 'bootstrap/base.html' %}
+{%import "bootstrap/wtf.html" as wtf%}
+{%block title%}
+    学生信息管理系统
+{%endblock%}
+
+{% block navbar %}
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{{ url_for('index') }}">学生信息管理系统</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="{{ url_for('index') }}">首页</a></li>
+                <li><a href="{{ url_for('new_stud') }}">新建学生</a></li>
+               
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if current_user.is_authenticated %}
+                    <li><a href="#">你好，{{ current_user.LoginName }}</a></li>
+                    <li><a href="{{ url_for('logout') }}">注销</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}">登录</a></li>
+                    <li><a href="{{ url_for('register') }}">注册</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endblock %}
+
+{%block content%}
+<div class="container">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-info" role="alert">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+</div>
+<div class="page-header">
+    <h1>学生信息列表</h1>
+</div>
+<h4>当前共有 {{studs|length}} 名学生</h4>
+{% if current_user.is_authenticated and current_user.is_admin() %}
+<a class="btn btn-primary" href="{{url_for('new_stud')}}">新建学生</a>
+{% endif %}
+<div>
+    {%for stud in studs%} 
+<div>
+    <p>
+        {{stud.studentName}} 
+        {% if stud.major %}
+            <span class="label label-info">{{ stud.major.major_name }}</span>
+        {% else %}
+            <span class="label label-default">未分配专业</span>
+        {% endif %}
+  
+    {% if current_user.is_authenticated and current_user.is_admin() %}
+    <a class="btn" href="{{url_for('main.edit_stud',stud_id=stud.id)}}">Edit</a> 
+    <a class="btn" href="{{url_for('main.del_stud',stud_id=stud.id)}}">Delete</a> 
+    {% endif %}
+    </p>
+</div>
+{%endfor%}
+<div class="page-header">
+    <h1>Student Records</h1> 
+    <div>
+        <a href="{{ url_for('main.index') }}" class="btn btn-primary btn-xs">所有学生</a>
+        {% for m in majors %}
+            <a href="{{ url_for('main.filter_by_major', major_id=m.id) }}" class="btn btn-default btn-xs">{{ m.major_name }}</a>
+        {% endfor %}
+    </div>
+</div>
+
+{%endblock%}
